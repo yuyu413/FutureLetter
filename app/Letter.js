@@ -2,16 +2,25 @@ import React from 'react';
 import{
     Text,
     View,
+    Keyboard,
     TouchableOpacity,
+    ScrollView,
     StyleSheet,
     TextInput,
     Button
 } from 'react-native';
 
 class Letter extends React.Component {
+    state = {
+        text : ''
+    }
+    theEnter(){
+
+    }
+
     render(){
         return(
-            <View style={{flex: 1, marginTop: 50}}>
+            <View style={{flex: 1, backgroundColor : 'lemonchiffon'}}>
                 <View style={styles.LetterInfo}>
                     <View style={{flex:1, flexDirection: 'row'}}>
                         <Text style={styles.ToWhom}>To. </Text>
@@ -30,9 +39,11 @@ class Letter extends React.Component {
                 </View>
                 <View style = {{flex:6}}>
                     <TextInput
+                        onSubmitEditing ={Keyboard.dismiss}
+                        multiline={true}
+                        numberOfLines={4}
                         style = {styles.LetterContent}
                         placeholder = '편지를 작성해주세요~~'>
-                        
                     </TextInput>
                 </View>
                 <View style = {{flex:1}}>
@@ -52,7 +63,8 @@ class Letter extends React.Component {
 
 const styles = StyleSheet.create({
     LetterInfo:{
-        flex : 3,
+        margin: 10,
+        flex : 2,
         height : 50,
         flexDirection: 'column',
         // alignItems : 'center',
@@ -61,36 +73,56 @@ const styles = StyleSheet.create({
     },
     ToWhomInput :{
         flex : 6,
-        backgroundColor:'powderblue'
+        height: 50,
+        marginTop:20,
+        marginLeft:20,
+        paddingLeft:10,
+        fontSize:20,
+        borderWidth: 1,
+        borderColor: '#000'
+        // backgroundColor:'powderblue'
     },
     FromWhomInput :{
-        flex :6,
-        backgroundColor : 'steelblue'
+        flex : 6,
+        height: 50,
+        marginTop:20,
+        marginLeft:20,
+        paddingLeft:10,
+        fontSize:20,
+        borderWidth: 1,
+        borderColor: '#000'
     },
     ToWhom :{
         flex : 1,
-        width: 200,
-        height:100,
+        // width: 200,
+        // height:100,
+        paddingTop:30,
         fontSize :20,
-        backgroundColor : 'skyblue'
-        // alignItems: 'center',
-        // justifyContent : 'center'
+        // backgroundColor : 'skyblue',
+        alignItems: 'center',
+        justifyContent : 'center'
 
     },
     FromWhom : {
         flex : 1,
-        width : 200,
-        backgroundColor : 'blue',
-        fontSize:20,
-        // alignItems: 'center',
-        // justifyContent : 'center'
+        // width: 200,
+        // height:100,
+        paddingTop:30,
+        fontSize :20,
+        // backgroundColor : 'skyblue',
+        alignItems: 'center',
+        justifyContent : 'center'
     },
     LetterContent:{
-        width: 500,
-        height: 500,
-        backgroundColor: "gray",
-        alignItems : 'center',
-        justifyContent : 'center'
+        width: 400,
+        height: 400,
+        marginLeft:10,
+        // paddingLeft:30,
+        // borderWidth :1,
+        // borderColor : ''MOCCASIN
+        backgroundColor: "gainsboro",
+        // alignItems : 'center',
+        // justifyContent : 'center'
     },
     ButtonToSend :{
         backgroundColor:'black'
