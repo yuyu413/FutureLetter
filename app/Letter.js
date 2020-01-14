@@ -37,8 +37,11 @@ class Letter extends React.Component {
                 </View>
                 <View style = {{flex:1}}>
                 <Button
+                style={styles.ButtonToSend}
                 title="Press me"
-                onPress={() => Alert.alert('Simple Button pressed')}
+                onPress={() =>
+                    this.props.navigation.navigate('Timer')
+                  }
                 />
                 </View>
             </View>
@@ -57,17 +60,17 @@ const styles = StyleSheet.create({
         // backgroundColor : 'black'
     },
     ToWhomInput :{
-        flex : 8,
+        flex : 6,
         backgroundColor:'powderblue'
     },
     FromWhomInput :{
-        flex :8,
+        flex :6,
         backgroundColor : 'steelblue'
     },
     ToWhom :{
         flex : 1,
-        width: 100,
-        height:50,
+        width: 200,
+        height:100,
         fontSize :20,
         backgroundColor : 'skyblue'
         // alignItems: 'center',
@@ -76,7 +79,7 @@ const styles = StyleSheet.create({
     },
     FromWhom : {
         flex : 1,
-        width : 100,
+        width : 200,
         backgroundColor : 'blue',
         fontSize:20,
         // alignItems: 'center',
@@ -88,6 +91,9 @@ const styles = StyleSheet.create({
         backgroundColor: "gray",
         alignItems : 'center',
         justifyContent : 'center'
+    },
+    ButtonToSend :{
+        backgroundColor:'black'
     }
 })
 
