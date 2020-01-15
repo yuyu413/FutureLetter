@@ -14,9 +14,9 @@ class Letter extends React.Component {
     state = {
         text : ''
     }
-    theEnter(){
+    // theEnter(){
 
-    }
+    // }
 
     render(){
         return(
@@ -37,7 +37,7 @@ class Letter extends React.Component {
                         </TextInput>
                     </View>
                 </View>
-                <View style = {{flex:6}}>
+                <View style = {{flex:6, alignItems: 'center'}}>
                     <TextInput
                         onSubmitEditing ={Keyboard.dismiss}
                         multiline={true}
@@ -116,13 +116,13 @@ const styles = StyleSheet.create({
     LetterContent:{
         width: 400,
         height: 400,
-        marginLeft:10,
+        // marginLeft:10,
         // paddingLeft:30,
         // borderWidth :1,
         // borderColor : ''MOCCASIN
         backgroundColor: "gainsboro",
-        // alignItems : 'center',
-        // justifyContent : 'center'
+        alignItems : 'center',
+        justifyContent : 'center'
     },
     ButtonToSend :{
         backgroundColor:'black'

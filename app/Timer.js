@@ -13,9 +13,13 @@ class Timer extends Component {
     };
   }
 
+  componentDidMount() {
+    this.countdownTimer();
+  }
+
   countdownTimer() {
     countDownDate = new Date("Jan 24, 2020 18:45:00").getTime();
-    
+
     clearInterval(timer);
     
     timer = setInterval(() => {
@@ -30,6 +34,9 @@ class Timer extends Component {
         clearInterval(timer);
         return false;
       }
+      if(hours < 10){ hours = '0'+hours;}
+      if(minutes < 10){ minutes = '0'+minutes;}
+      if(seconds < 10){ seconds = '0'+seconds;}
 
       this.setState({
         days: days,
@@ -43,10 +50,9 @@ class Timer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Remaining Hour :{this.state.hours}</Text>
-        <Text>Remaining Min :{this.state.minutes}</Text>
-        <Text>Remaining Sec :{this.state.seconds}</Text>
-        <Button title="Start timer" onPress={() => this.countdownTimer()} />
+        <Text style ={styles.RemainingTime}>Remaining Time</Text>
+        <Text style = {styles.days}>{this.state.days}days </Text>
+        <Text style = {styles.time}> {this.state.hours} : {this.state.minutes} : {this.state.seconds}</Text>
       </View>
     );
   }
@@ -58,7 +64,22 @@ class Timer extends Component {
      flex:1,
      justifyContent:'center',
      alignItems:'center',
-   } 
+   } ,
+   RemainingTime:{
+     alignItems:'center',
+   },
+   days:{
+     marginTop:30,
+     fontSize:20,
+     alignItems: 'center',
+   },
+   time:{
+     marginTop:50,
+     fontSize: 50,
+     alignItems: 'center',
+     color: 'dodgerblue',
+     marginBottom: 250
+   }
 });
 
   export default Timer;
