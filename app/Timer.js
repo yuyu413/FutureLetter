@@ -2,55 +2,40 @@ import React, { Component } from "react";
 import { View,Text,Button,StyleSheet } from "react-native";
 timer = () => {};
 class Timer extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      remainingMin: 1,
-      remainingSec: 0,
-      remainingTime: 10,
+        days: 1,
+        hours :2,
+        minutes: 1,
+        seconds: 0,
     };
   }
 
   countdownTimer() {
-    this.setState({
-        remainingHour: 1,
-        remainingMin: 1,
-        remainingSec: 10,
-        remainingTime: 10,
-    });
+    countDownDate = new Date("Jan 24, 2020 18:45:00").getTime();
+    
     clearInterval(timer);
-    timerForHour = setInterval(() => {
-        
-        this.setState(prevState => {
-          return {
-            remainingTime: prevState.remainingTime - 1,
-            // remainingMin: prevState.remainingMin - 1
-          };
-        });
-      }, 1000);
-    timerForMin = setInterval(() => {
-      if (!this.state.remainingHour && !this.state.remainingMin && !this.state.remainingSec) {
+    
+    timer = setInterval(() => {
+      let now = new Date().getTime();
+      let distance = countDownDate - now;
+
+      let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      if(distance < 0){
         clearInterval(timer);
         return false;
       }
-      this.setState(prevState => {
-        //   if(this.remainingHour != 0){
-        //     remainingMin:59
-        //   }
-        return {remainingMin: prevState.remainingMin - 1};
-      });
-    }, 60000);
 
-    timerForSec = setInterval(() => {
-      // if(!this.state.remainingTime){
-      //   clearInterval(timer);
-      //   return false;
-      // }
-      this.setState(prevState => {
-        return {
-          remainingTime: prevState.remainingTime - 1,
-          // remainingMin: prevState.remainingMin - 1
-        };
+      this.setState({
+        days: days,
+        hours:hours,
+        minutes: minutes,
+        seconds:seconds
       });
     }, 1000);
   }
@@ -58,9 +43,9 @@ class Timer extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Remaining time :{this.state.remainingHour}</Text>
-        <Text>Remaining time :{this.state.remainingMin}</Text>
-        <Text>Remaining time :{this.state.remainingSec}</Text>
+        <Text>Remaining Hour :{this.state.hours}</Text>
+        <Text>Remaining Min :{this.state.minutes}</Text>
+        <Text>Remaining Sec :{this.state.seconds}</Text>
         <Button title="Start timer" onPress={() => this.countdownTimer()} />
       </View>
     );
